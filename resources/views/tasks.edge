@@ -1,17 +1,18 @@
 @layout('main')
 @section('content')
 
-<h1>Tasks</h1>
+<h1>{{ title }}</h1>
 
-<div class="alert alert-success" role="alert">
-    A simple success alert—check it out!
-</div>
+@if(old('notification'))
+    <div class="alert alert-success" role="alert">
+        {{ old('notification') }}
+    </div>
+@endif
 
 <ul class="list-group">
-    <li class="list-group-item">Dapibus ac facilisis in</li>
-    <li class="list-group-item">Morbi leo risus</li>
-    <li class="list-group-item">Porta ac consectetur ac</li>
-    <li class="list-group-item">Vestibulum at eros</li>
+    @each(item in tasks)
+        <a href="/task/{{ item.id }}" class="list-group-item">{{ item.title }}</a>
+    @endeach
 </ul>
 
 @endsection
